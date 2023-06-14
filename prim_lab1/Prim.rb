@@ -1,19 +1,21 @@
-class PublicController < ApplicationController
-  def main
-    if account_signed_in?
+<main>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <section class="latest-properties">
+        <div class="row border-bottom">
+          <div class="col">
+            <h2 class="pb-2">Latest apartments:</h2>
+          </div>
+          <div class="col d-flex justify-content-end ">
+            <%= render "properties/rooms_dropdown" %>
+          </div>
 
-    end
+        </div>
 
-    @properties = Property.latest
-
-  end
-
-  def sell
-    @properties = Property.latest.where(offer: 'Sell')
-  end
-
-  def rent
-    @properties = Property.latest.where(offer: 'Rent')
-  end
-
-end
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 pt-3">
+          <%= render "properties/latest_properties" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
