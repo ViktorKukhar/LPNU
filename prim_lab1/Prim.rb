@@ -1,20 +1,22 @@
-Rails.application.routes.draw do
-  # Іменовані маршрути
-  get '/dashboard' => 'dashboard#index', as: :dashboard
-  get '/admin' => 'admin#admin_panel', as: :admin_panel
-  get '/profile/:id' => 'admin#profile', as: :profile
+<h2 class="mt-5">Sellers:</h2>
+<table class= "table table-striped">
 
-  # RESTful ресурси
-  resources :properties
-
-  # Інші маршрути
-  get '/apartments' => 'properties#apartments', as: :apartments
-  get '/houses' => 'properties#houses', as: :houses
-  get '/sell' => 'public#sell', as: :sell
-  get '/rent' => 'public#rent', as: :rent
-  get 'sell/apartments' => 'properties#apartments_sell', as: :apartments_sell
-  # ...
-
-  # Головний маршрут
-  root to: 'public#main'
-end
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Created at:</th>
+      <th>Properties:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accounts.each do |account| %>
+    <tr>
+    <td><%= account.full_name %></td>
+    <td><%= account.email %></td>
+    <td><%= account.created_at.strftime("%d/%m/%Y") %></td>
+    <td><%= link_to 'View', profile_path(account), class: "btn btn-outline-primary btn-sm mx-2" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
